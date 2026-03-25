@@ -21,7 +21,7 @@ services:
     build: ./backend
     restart: always
     ports:
-      - "8001:8000"
+      - "8002:8000"
     environment:
       DATABASE_URL: mysql+pymysql://hrms_user:hrms_pass@mysql:3306/hrms_db
     depends_on:
@@ -32,7 +32,7 @@ services:
     build: ./frontend
     restart: always
     ports:
-      - "3001:80"
+      - "3002:80"
     depends_on:
       - backend
 
