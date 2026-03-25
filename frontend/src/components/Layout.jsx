@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useTheme } from '../context/ThemeContext'
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: DashboardIcon },
@@ -44,9 +45,10 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
   const breadcrumbs = getBreadcrumb(location.pathname)
+  const { dark, toggle } = useTheme()
 
   return (
-    <div className="min-h-screen flex bg-slate-100">
+    <div className="min-h-screen flex bg-slate-100 dark:bg-slate-900">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -113,31 +115,16 @@ export default function Layout() {
           </Link>
         </div>
 
-        {/* Bottom links */}
-        <div className="px-3 pb-5 space-y-1 border-t border-white/10 pt-3">
-          <div className="flex items-center gap-3 px-3 py-2 text-slate-400 text-sm">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Settings
-          </div>
-          <div className="flex items-center gap-3 px-3 py-2 text-slate-400 text-sm">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Support
-          </div>
-        </div>
+
       </aside>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-6 shrink-0">
+        <header className="h-14 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 lg:px-6 shrink-0">
           <div className="flex items-center gap-2">
             <button
-              className="lg:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100"
+              className="lg:hidden p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700"
               onClick={() => setSidebarOpen(true)}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,26 +135,36 @@ export default function Layout() {
             <nav className="flex items-center text-sm">
               {breadcrumbs.map((crumb, i) => (
                 <span key={i} className="flex items-center">
-                  {i > 0 && <span className="mx-1.5 text-slate-300">›</span>}
+                  {i > 0 && <span className="mx-1.5 text-slate-300 dark:text-slate-600">›</span>}
                   {crumb.to ? (
-                    <Link to={crumb.to} className="text-slate-500 hover:text-slate-700">{crumb.label}</Link>
+                    <Link to={crumb.to} className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">{crumb.label}</Link>
                   ) : (
-                    <span className="text-slate-800 font-medium">{crumb.label}</span>
+                    <span className="text-slate-800 dark:text-white font-medium">{crumb.label}</span>
                   )}
                 </span>
               ))}
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <button className="relative p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+            {/* Theme toggle */}
+            <button
+              onClick={toggle}
+              className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              title={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {dark ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
             </button>
-            <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
+            <div className="flex items-center gap-2 pl-3 border-l border-slate-200 dark:border-slate-700">
               <div className="text-right hidden sm:block">
-                <p className="text-xs font-semibold text-slate-700">Admin User</p>
+                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">Admin User</p>
                 <p className="text-[10px] text-slate-400">Executive Mode</p>
               </div>
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: '#0d9488' }}>
@@ -183,7 +180,7 @@ export default function Layout() {
         </main>
 
         {/* Footer */}
-        <footer className="py-3 px-6 text-center text-xs text-slate-400 border-t border-slate-200 bg-white">
+        <footer className="py-3 px-6 text-center text-xs text-slate-400 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
           © 2026 HRMS Lite Enterprise. All rights reserved.
         </footer>
       </div>

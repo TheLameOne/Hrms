@@ -96,8 +96,8 @@ export default function Attendance() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Daily Attendance</h1>
-          <p className="text-sm text-slate-500 mt-1">Track and manage daily employee attendance records across all departments.</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Daily Attendance</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Track and manage daily employee attendance records across all departments.</p>
         </div>
         <button
           onClick={handleSave}
@@ -114,30 +114,30 @@ export default function Attendance() {
       {/* Date selector + summary */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
         {/* Date */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-4">
           <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Selected Date</p>
           <input
             type="date"
             value={date}
             onChange={e => setDate(e.target.value)}
-            className="w-full text-sm font-semibold text-slate-800 border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+            className="w-full text-sm font-semibold text-slate-800 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-slate-50 dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
           />
           <p className="text-[11px] text-slate-400 mt-1.5">{formattedDate}</p>
         </div>
         {/* Total Staff */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-4">
           <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Total Staff</p>
-          <p className="text-3xl font-bold text-slate-900">{employees.length}</p>
+          <p className="text-3xl font-bold text-slate-900 dark:text-white">{employees.length}</p>
           <p className="text-[11px] text-slate-400 mt-1.5">Registered employees</p>
         </div>
         {/* Present */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-4">
           <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Present</p>
           <p className="text-3xl font-bold" style={{ color: '#0d9488' }}>{presentCount}</p>
           <p className="text-[11px] text-slate-400 mt-1.5">Marked present today</p>
         </div>
         {/* Absent */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-4">
           <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Absent</p>
           <p className="text-3xl font-bold text-rose-500">{absentCount}</p>
           <p className="text-[11px] text-slate-400 mt-1.5">Marked absent today</p>
@@ -145,16 +145,16 @@ export default function Attendance() {
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
+        <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-300">
           {error}
           <button onClick={fetchEmployees} className="ml-2 font-medium hover:underline text-xs">Retry</button>
         </div>
       )}
 
       {/* Employee Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         {/* Search */}
-        <div className="p-4 border-b border-slate-100">
+        <div className="p-4 border-b border-slate-100 dark:border-slate-700">
           <div className="relative max-w-sm">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -164,7 +164,7 @@ export default function Attendance() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search employees..."
-              className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+              className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 dark:text-white dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
             />
           </div>
         </div>
@@ -180,43 +180,43 @@ export default function Attendance() {
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead>
-                  <tr className="border-b border-slate-100">
-                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Employee</th>
-                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Department</th>
-                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Status</th>
-                    <th className="px-5 py-3 text-center text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Action</th>
+                  <tr className="border-b border-slate-100 dark:border-slate-700">
+                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Employee</th>
+                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Department</th>
+                    <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Status</th>
+                    <th className="px-5 py-3 text-center text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-50">
+                <tbody className="divide-y divide-slate-50 dark:divide-slate-700">
                   {filtered.map(emp => {
                     const st = statuses[emp.id]
                     return (
-                      <tr key={emp.id} className="hover:bg-slate-50/50 transition-colors">
+                      <tr key={emp.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors">
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
                             <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ backgroundColor: getAvatarColor(emp.full_name) }}>
                               {getInitials(emp.full_name)}
                             </div>
                             <div>
-                              <p className="text-sm font-semibold text-slate-800">{emp.full_name}</p>
+                              <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{emp.full_name}</p>
                               <p className="text-[11px] text-slate-400">{emp.employee_id}</p>
                             </div>
                           </div>
                         </td>
                         <td className="px-5 py-3">
-                          <span className="px-2.5 py-0.5 rounded-md text-[11px] font-medium" style={{ backgroundColor: '#f0fdfa', color: '#0d9488' }}>
+                          <span className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400">
                             {emp.department}
                           </span>
                         </td>
                         <td className="px-5 py-3">
                           {st ? (
                             <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-medium ${
-                              st === 'Present' ? 'bg-teal-50 text-teal-700' : 'bg-rose-50 text-rose-700'
+                              st === 'Present' ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400' : 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400'
                             }`}>
                               {st}
                             </span>
                           ) : (
-                            <span className="text-[11px] text-slate-300">Not marked</span>
+                            <span className="text-[11px] text-slate-300 dark:text-slate-500">Not marked</span>
                           )}
                         </td>
                         <td className="px-5 py-3">
@@ -224,7 +224,7 @@ export default function Attendance() {
                             <button
                               onClick={() => handleStatus(emp.id, 'Present')}
                               className={`p-1.5 rounded-lg transition-colors ${
-                                st === 'Present' ? 'bg-teal-100 text-teal-700' : 'bg-slate-100 text-slate-400 hover:bg-teal-50 hover:text-teal-600'
+                                st === 'Present' ? 'bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400'
                               }`}
                               title="Mark Present"
                             >
@@ -235,7 +235,7 @@ export default function Attendance() {
                             <button
                               onClick={() => handleStatus(emp.id, 'Absent')}
                               className={`p-1.5 rounded-lg transition-colors ${
-                                st === 'Absent' ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-400 hover:bg-rose-50 hover:text-rose-600'
+                                st === 'Absent' ? 'bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 hover:text-rose-600 dark:hover:text-rose-400'
                               }`}
                               title="Mark Absent"
                             >
@@ -251,8 +251,8 @@ export default function Attendance() {
                 </tbody>
               </table>
             </div>
-            <div className="px-5 py-3 border-t border-slate-100 flex items-center justify-between">
-              <p className="text-[11px] text-slate-400">
+            <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+              <p className="text-[11px] text-slate-400 dark:text-slate-500">
                 {markedCount} of {filtered.length} employees marked
               </p>
             </div>
@@ -262,19 +262,19 @@ export default function Attendance() {
 
       {/* Attendance Summary */}
       {markedCount > 0 && (
-        <div className="mt-4 bg-white rounded-xl border border-slate-200 shadow-sm p-5">
-          <h2 className="text-base font-bold text-slate-900 mb-3">Attendance Summary</h2>
+        <div className="mt-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-5">
+          <h2 className="text-base font-bold text-slate-900 dark:text-white mb-3">Attendance Summary</h2>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#0d9488' }} />
-              <span className="text-sm text-slate-600">Present: <strong>{presentCount}</strong></span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Present: <strong>{presentCount}</strong></span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-rose-400" />
-              <span className="text-sm text-slate-600">Absent: <strong>{absentCount}</strong></span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Absent: <strong>{absentCount}</strong></span>
             </div>
           </div>
-          <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden mt-3">
+          <div className="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mt-3">
             <div className="h-full flex">
               {presentCount > 0 && <div className="h-full rounded-l-full" style={{ width: `${(presentCount / markedCount) * 100}%`, backgroundColor: '#0d9488' }} />}
               {absentCount > 0 && <div className="h-full rounded-r-full bg-rose-300" style={{ width: `${(absentCount / markedCount) * 100}%` }} />}

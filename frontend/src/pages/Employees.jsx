@@ -115,13 +115,13 @@ export default function Employees() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Employee Directory</h1>
-          <p className="text-sm text-slate-500 mt-1">Manage and register organizational talent across all departments and divisions.</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Employee Directory</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage and register organizational talent across all departments and divisions.</p>
         </div>
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700 flex items-center gap-2">
+        <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-300 flex items-center gap-2">
           <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           {error}
           <button onClick={fetchEmployees} className="ml-auto text-red-800 font-medium hover:underline text-xs">Retry</button>
@@ -132,8 +132,8 @@ export default function Employees() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         {/* Left: Register Form */}
         <div className="xl:col-span-1">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-            <h2 className="text-base font-bold text-slate-900 mb-1">Register New Talent</h2>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">Register New Talent</h2>
             <p className="text-xs text-slate-400 mb-5">Add a new employee to the system</p>
             <form onSubmit={handleSubmit} className="space-y-4">
               {[
@@ -143,15 +143,15 @@ export default function Employees() {
                 { name: 'department', label: 'Department', placeholder: 'Engineering' },
               ].map(field => (
                 <div key={field.name}>
-                  <label className="block text-xs font-medium text-slate-600 mb-1.5">{field.label}</label>
+                  <label className="block text-xs font-medium text-slate-600 dark:text-slate-300 mb-1.5">{field.label}</label>
                   <input
                     name={field.name}
                     type={field.type || 'text'}
                     value={form[field.name]}
                     onChange={handleChange}
                     placeholder={field.placeholder}
-                    className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500 transition-colors ${
-                      formErrors[field.name] ? 'border-red-300 bg-red-50/50' : 'border-slate-200 bg-slate-50'
+                    className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500 transition-colors dark:text-white dark:placeholder-slate-500 ${
+                      formErrors[field.name] ? 'border-red-300 bg-red-50/50 dark:border-red-700 dark:bg-red-900/20' : 'border-slate-200 bg-slate-50 dark:border-slate-600 dark:bg-slate-700'
                     }`}
                   />
                   {formErrors[field.name] && <p className="mt-1 text-[11px] text-red-500">{formErrors[field.name]}</p>}
@@ -171,12 +171,12 @@ export default function Employees() {
           </div>
 
           {/* Active Employees Stats */}
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 mt-4">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-5 mt-4">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm font-bold text-slate-900">Active Employees</h3>
-              <span className="text-lg font-bold text-slate-900">{employees.length}</span>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Active Employees</h3>
+              <span className="text-lg font-bold text-slate-900 dark:text-white">{employees.length}</span>
             </div>
-            <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
               <div className="h-full rounded-full" style={{ width: '100%', backgroundColor: '#0d9488' }} />
             </div>
             <p className="text-[11px] text-slate-400 mt-2">Across {departments.length} department{departments.length !== 1 ? 's' : ''}</p>
@@ -185,9 +185,9 @@ export default function Employees() {
 
         {/* Right: Employee Table */}
         <div className="xl:col-span-2">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
             {/* Search & Filters */}
-            <div className="p-4 border-b border-slate-100">
+            <div className="p-4 border-b border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3">
                 <div className="relative flex-1">
                   <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,7 +198,7 @@ export default function Employees() {
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                     placeholder="Search employees..."
-                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 dark:text-white dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
                   />
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function Employees() {
                       key={dept}
                       onClick={() => setSearch(search === dept ? '' : dept)}
                       className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors ${
-                        search === dept ? 'text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        search === dept ? 'text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
                       }`}
                       style={search === dept ? { backgroundColor: '#0a1628' } : {}}
                     >
@@ -236,23 +236,23 @@ export default function Employees() {
                 <div className="overflow-x-auto">
                   <table className="min-w-full">
                     <thead>
-                      <tr className="border-b border-slate-100">
-                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Employee</th>
-                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Department</th>
-                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Email</th>
-                        <th className="px-5 py-3 text-right text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Actions</th>
+                      <tr className="border-b border-slate-100 dark:border-slate-700">
+                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Employee</th>
+                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Department</th>
+                        <th className="px-5 py-3 text-left text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Email</th>
+                        <th className="px-5 py-3 text-right text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-50">
+                    <tbody className="divide-y divide-slate-50 dark:divide-slate-700">
                       {filtered.map(emp => (
-                        <tr key={emp.id} className="hover:bg-slate-50/50 transition-colors">
+                        <tr key={emp.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors">
                           <td className="px-5 py-3">
                             <div className="flex items-center gap-3">
                               <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ backgroundColor: getAvatarColor(emp.full_name) }}>
                                 {getInitials(emp.full_name)}
                               </div>
                               <div>
-                                <p className="text-sm font-semibold text-slate-800">{emp.full_name}</p>
+                                <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{emp.full_name}</p>
                                 <p className="text-[11px] text-slate-400">{emp.employee_id}</p>
                               </div>
                             </div>
@@ -262,12 +262,12 @@ export default function Employees() {
                               {emp.department}
                             </span>
                           </td>
-                          <td className="px-5 py-3 text-sm text-slate-500">{emp.email}</td>
+                          <td className="px-5 py-3 text-sm text-slate-500 dark:text-slate-400">{emp.email}</td>
                           <td className="px-5 py-3 text-right">
                             <div className="flex items-center justify-end gap-2">
                               <Link
                                 to={`/employees/${emp.id}/attendance`}
-                                className="px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+                                className="px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                               >
                                 View
                               </Link>
@@ -286,8 +286,8 @@ export default function Employees() {
                   </table>
                 </div>
                 {/* Footer */}
-                <div className="px-5 py-3 border-t border-slate-100 flex items-center justify-between">
-                  <p className="text-[11px] text-slate-400">Showing {filtered.length} of {employees.length} employees</p>
+                <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                  <p className="text-[11px] text-slate-400 dark:text-slate-500">Showing {filtered.length} of {employees.length} employees</p>
                 </div>
               </>
             )}

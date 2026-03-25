@@ -47,8 +47,8 @@ export default function Dashboard() {
     <div>
       {/* Page header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Executive Overview</h1>
-        <p className="text-sm text-slate-500 mt-1">Real-time workforce metrics and organizational health indicators for the current fiscal period.</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Executive Overview</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Real-time workforce metrics and organizational health indicators for the current fiscal period.</p>
       </div>
 
       {error && <ErrorAlert message={error} onRetry={fetchData} />}
@@ -60,7 +60,7 @@ export default function Dashboard() {
           {/* Top stat cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
             {/* Total Employees Card */}
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: '#0a1628' }}>
@@ -68,8 +68,8 @@ export default function Dashboard() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <p className="text-sm text-slate-500">Total Employees</p>
-                  <p className="text-4xl font-bold text-slate-900 mt-1">{summary.total_employees.toLocaleString()}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Total Employees</p>
+                  <p className="text-4xl font-bold text-slate-900 dark:text-white mt-1">{summary.total_employees.toLocaleString()}</p>
                 </div>
                 <span className="px-3 py-1 text-xs font-semibold rounded-full text-teal-700 bg-teal-50 border border-teal-200">
                   System Active
@@ -78,16 +78,16 @@ export default function Dashboard() {
             </div>
 
             {/* Today's Attendance Card */}
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <p className="text-xs text-slate-400 uppercase tracking-wider">Today's Attendance</p>
-                  <p className="text-lg font-bold text-slate-900">Presence Real-time</p>
+                  <p className="text-lg font-bold text-slate-900 dark:text-white">Presence Real-time</p>
                 </div>
                 <div className="flex gap-6 text-right">
                   <div>
                     <p className="text-[10px] text-slate-400 uppercase tracking-wider">Present</p>
-                    <p className="text-2xl font-bold text-slate-900">{summary.present_today.toLocaleString()}</p>
+                    <p className="text-2xl font-bold text-slate-900 dark:text-white">{summary.present_today.toLocaleString()}</p>
                   </div>
                   <div>
                     <p className="text-[10px] text-slate-400 uppercase tracking-wider">Absent</p>
@@ -96,13 +96,13 @@ export default function Dashboard() {
                 </div>
               </div>
               {/* Progress bar */}
-              <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden mt-3">
+              <div className="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mt-3">
                 <div className="h-full rounded-full flex">
                   <div className="h-full rounded-l-full" style={{ width: `${presentPct}%`, backgroundColor: '#0d9488' }} />
                   <div className="h-full rounded-r-full bg-rose-200" style={{ width: `${absentPct}%` }} />
                 </div>
               </div>
-              <div className="flex justify-between mt-2 text-[11px] text-slate-500 font-medium">
+              <div className="flex justify-between mt-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 <span>{presentPct}% PRESENT</span>
                 <span>{absentPct}% ABSENT</span>
               </div>
@@ -112,10 +112,10 @@ export default function Dashboard() {
           {/* Bottom section: Department Mix + Recently Boarded */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Department Mix */}
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-base font-bold text-slate-900">Department Mix</h2>
-                <button className="text-slate-400 hover:text-slate-600">
+                <h2 className="text-base font-bold text-slate-900 dark:text-white">Department Mix</h2>
+                <button className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" />
                   </svg>
@@ -135,8 +135,8 @@ export default function Dashboard() {
                           backgroundColor: deptColors[i % deptColors.length]
                         }}
                       />
-                      <p className="text-[10px] text-slate-500 mt-2 text-center uppercase tracking-wider truncate w-full">
-                        {dept.substring(0, 7)}
+                      <p className="text-[10px] text-slate-500 mt-2 text-center uppercase tracking-wider w-full" title={dept}>
+                        {dept}
                       </p>
                     </div>
                   ))}
@@ -145,10 +145,10 @@ export default function Dashboard() {
             </div>
 
             {/* Recently Boarded */}
-            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-base font-bold text-slate-900">Recently Boarded</h2>
-                <Link to="/employees" className="text-xs font-medium text-slate-500 hover:text-slate-700">View All Directory</Link>
+                <h2 className="text-base font-bold text-slate-900 dark:text-white">Recently Boarded</h2>
+                <Link to="/employees" className="text-xs font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">View All Directory</Link>
               </div>
               {recentEmployees.length === 0 ? (
                 <p className="text-sm text-slate-400 text-center py-8">No employees yet</p>
@@ -160,12 +160,12 @@ export default function Dashboard() {
                         {getInitials(emp.full_name)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-800 truncate">{emp.full_name}</p>
+                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 truncate">{emp.full_name}</p>
                         <p className="text-xs text-slate-400 truncate">{emp.department}</p>
                       </div>
                       <div className="text-right shrink-0">
                         <p className="text-[10px] text-slate-400 uppercase tracking-wider">Joined</p>
-                        <p className="text-xs text-slate-600 font-medium">
+                        <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">
                           {emp.created_at ? new Date(emp.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}
                         </p>
                       </div>
