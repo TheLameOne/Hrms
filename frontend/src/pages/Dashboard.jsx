@@ -33,7 +33,7 @@ export default function Dashboard() {
     return acc
   }, {})
   const maxDeptCount = Math.max(...Object.values(deptCounts), 1)
-  const deptColors = ['#0a1628', '#1a2744', '#334155', '#0d9488', '#64748b', '#475569']
+  const deptColors = ['#0d9488', '#6366f1', '#f59e0b', '#3b82f6', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6']
 
   // Recently added employees (last 5)
   const recentEmployees = employees.slice(0, 5)
@@ -71,7 +71,7 @@ export default function Dashboard() {
                   <p className="text-sm text-slate-500 dark:text-slate-400">Total Employees</p>
                   <p className="text-4xl font-bold text-slate-900 dark:text-white mt-1">{summary.total_employees.toLocaleString()}</p>
                 </div>
-                <span className="px-3 py-1 text-xs font-semibold rounded-full text-teal-700 bg-teal-50 border border-teal-200">
+                <span className="px-3 py-1 text-xs font-semibold rounded-full text-teal-700 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800">
                   System Active
                 </span>
               </div>
@@ -99,7 +99,7 @@ export default function Dashboard() {
               <div className="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mt-3">
                 <div className="h-full rounded-full flex">
                   <div className="h-full rounded-l-full" style={{ width: `${presentPct}%`, backgroundColor: '#0d9488' }} />
-                  <div className="h-full rounded-r-full bg-rose-200" style={{ width: `${absentPct}%` }} />
+                  <div className="h-full rounded-r-full bg-rose-300 dark:bg-rose-500" style={{ width: `${absentPct}%` }} />
                 </div>
               </div>
               <div className="flex justify-between mt-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium">

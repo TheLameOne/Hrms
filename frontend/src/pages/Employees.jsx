@@ -258,7 +258,7 @@ export default function Employees() {
                             </div>
                           </td>
                           <td className="px-5 py-3">
-                            <span className="px-2.5 py-0.5 rounded-md text-[11px] font-medium" style={{ backgroundColor: '#f0fdfa', color: '#0d9488' }}>
+                            <span className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400">
                               {emp.department}
                             </span>
                           </td>
@@ -274,7 +274,7 @@ export default function Employees() {
                               <button
                                 onClick={() => handleDelete(emp.id)}
                                 disabled={deleteId === emp.id}
-                                className="px-2.5 py-1 rounded-md text-[11px] font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors disabled:opacity-50"
+                                className="px-2.5 py-1 rounded-md text-[11px] font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors disabled:opacity-50"
                               >
                                 {deleteId === emp.id ? '...' : 'Delete'}
                               </button>
