@@ -56,7 +56,7 @@ Hrms/
 
 ```bash
 # Clone the repo
-git clone <repo-url>
+git clone https://github.com/TheLameOne/Hrms.git
 cd Hrms
 
 # Start all services
